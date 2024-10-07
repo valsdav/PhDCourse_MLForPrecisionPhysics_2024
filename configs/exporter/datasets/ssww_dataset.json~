@@ -1,0 +1,15 @@
+{
+    "SSWW_2018": {
+        "metadata": {
+            "das_names": "['']",
+            "sample": "SSWW",
+            "year": "2018",
+            "isMC": "True",
+            "xsec": "1.",
+            "nevents": "3700000",
+            "size": "x"
+        },
+        "files": [
+	    "root://eosuser.cern.ch//eos/user/d/dvalsecc/EFT_PhD_Course/samples",
+
+	}
