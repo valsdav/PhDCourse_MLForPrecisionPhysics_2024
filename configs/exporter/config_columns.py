@@ -53,35 +53,11 @@ cfg = Configurator(
     ],
     
     categories = {
-        "nosel": [passthrough],
-        "pt_sels": [get_nObj_min(1, minpt=25., coll="LeptonGood"),
-                    get_nObj_eq(2, minpt=15., coll="LeptonGood"),
-                    ],
-        "SS": [samesign],
-        "vbs_sel": [vbs_presel],
-        "vbs_sel_looser": [vbs_presel_looser],
-        "all": [
-            get_nObj_min(1, minpt=25., coll="LeptonGood"),
-            get_nObj_eq(2, minpt=15., coll="LeptonGood"),
-            vbs_presel,
-            samesign],
-        "all_looser": [
-            get_nObj_min(1, minpt=25., coll="LeptonGood"),
-            get_nObj_eq(2, minpt=15., coll="LeptonGood"),
-            vbs_presel_looser,
-            samesign],
-        "vbs_and_ptsels":
-        [
-        get_nObj_min(1, minpt=25., coll="LeptonGood"),
-         get_nObj_eq(2, minpt=15., coll="LeptonGood"),
-         vbs_presel,
-         ],
-        "vbs_looser_and_ptsels":
-        [
+        "minimal": [
          get_nObj_min(1, minpt=25., coll="LeptonGood"),
          get_nObj_eq(2, minpt=15., coll="LeptonGood"),
          vbs_presel_looser,
-         ],
+        ],
     },
 
     weights = {
@@ -117,7 +93,7 @@ cfg = Configurator(
         **count_hist(name="nLeptons", coll="LeptonGood",bins=4, start=1, stop=5),
         "vbs_jet_pt0" : HistConf([
             Axis(coll="VBSJets", field="pt", pos=0,
-                 label=r"$p_{T}^{VBS-jet0}$ [GeV]", bins=70, start=20, stop=2000)], ),
+                 label=r"$p_{T}^{VBS-jet0}$ [GeV]", bins=70, start=20, stop=3000)], ),
         "vbs_jet_eta0" : HistConf([
             Axis(coll="VBSJets", field="eta",pos=0,
                  label= r"$\eta^{VBS-jet0}$", bins=50, start=-5, stop=5)], ),
@@ -136,7 +112,7 @@ cfg = Configurator(
                 label= r"$\eta^{leading lepton}$", bins=50, start=-3,stop=3)], ),
         "subleading_lepton_pt" : HistConf([
             Axis(coll="LeptonGood", field="pt", pos=1,
-                label= r"$p_{T}^{subleading lepton}$ [GeV]", bins=50, start=0, stop=200)], ),
+                label= r"$p_{T}^{subleading lepton}$ [GeV]", bins=50, start=0, stop=400)], ),
         "subleading_lepton_eta" : HistConf([
             Axis(coll="LeptonGood", field="eta", pos=1,
                 label= r"$\eta^{subleading lepton}$", bins=50, start=-3, stop=3)], ),
@@ -147,9 +123,9 @@ cfg = Configurator(
         "deltaeta_vbs": HistConf([
             Axis("deltaeta_vbs", r"$\Delta\eta_{jj}^{VBS}$", 60, 0, 10)], ),
         "mll": HistConf([
-            Axis("mll", r"$m_{\ell\ell}$ [GeV]", 60, 0, 600)], ),
+            Axis("mll", r"$m_{\ell\ell}$ [GeV]", 70, 0, 700)], ),
         "PuppiMET": HistConf([
-            Axis(coll="PuppiMET", field="pt", label=r"$p_{T}^{miss}$ [GeV]", bins=70,start= 0, stop=1000)], ),
+            Axis(coll="PuppiMET", field="pt", label=r"$p_{T}^{miss}$ [GeV]", bins=80,start= 0, stop=1200)], ),
         "Zeppl1_vbs": HistConf([
             Axis("Zeppl1_vbs", r"$Zeppl1_{VBS}$", 60, 0, 3)], ),
         "Zeppl2_vbs": HistConf([
@@ -157,15 +133,30 @@ cfg = Configurator(
     },
 
     columns = {
-        # "common": {
-        #     "inclusive": [
-        #         ColOut("JetGood",
-        #                ["pt", "eta", "phi", "mass"],
-        #                flatten=False
-        #                ),
-        #         ColOut("LeptonGood",
-        #                ["pt", "eta", "phi", "mass", "charge"],)
-        #     ],
-        # }
+        "common": {
+            "inclusive": [
+                ColOut("VBSJets",
+                       ["pt", "eta", "phi", "mass"],
+                       flatten=False
+                       ),
+                ColOut("nonVBSJets",
+                       ["pt", "eta", "phi", "mass"],
+                       flatten=False
+                       ),
+                ColOut("LeptonGood",
+                       ["pt", "eta", "phi", "mass", "charge"],
+                       flatten=False
+                       ),
+                ColOut("PuppiMET", ["phi","pt"], flatten=False),
+
+                ColOut("W1", ["pt", "eta", "phi", "mass", "charge"]),
+                ColOut("W2", ["pt", "eta", "phi", "mass", "charge"]),
+                ColOut("VBSPartons", ["pt", "eta", "phi", "mass", "pdgId"], flatten=False),
+                ColOut("Neutrino1", ["pt", "eta", "phi"]),
+                ColOut("Neutrino2", ["pt", "eta", "phi"]),
+                
+                ColOut("Generator",["x1","x2","id1","id2","xpdf1","xpdf2"], flatten=False),
+            ],
+        }
     }
 )

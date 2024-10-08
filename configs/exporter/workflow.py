@@ -53,6 +53,18 @@ class SSWWProcessor(BaseProcessorABC):
         )
         leptons =  ak.concatenate((self.events.MuonGood, self.events.ElectronGood), axis=1)
         self.events["LeptonGood"] = leptons[ak.argsort(leptons.pt, ascending=False)]
+
+        self.events["JetGood"], self.jetGoodMask = jet_selection(
+            self.events, "Jet", self.params,
+            self._year,
+            leptons_collection="LeptonGood"
+        )
+        self.events["BJetGood"] = btagging(
+            self.events["JetGood"],
+            self.params.btagging.working_point[self._year],
+            wp=self.params.object_preselection.Jet.btag.wp
+        )
+        
         # Pad the LeptonGood collection to 2 objects
         self.events["LeptonGood"] = ak.with_name(
             ak.fill_none(
@@ -63,15 +75,7 @@ class SSWWProcessor(BaseProcessorABC):
             name='PtEtaPhiMCandidate',
         )
 
-        self.events["JetGood"], self.jetGoodMask = jet_selection(
-            self.events, "Jet", self.params,
-            self._year, leptons_collection="LeptonGood"
-        )
-        self.events["BJetGood"] = btagging(
-            self.events["JetGood"],
-            self.params.btagging.working_point[self._year],
-            wp=self.params.object_preselection.Jet.btag.wp
-        )
+      
 
 
     def count_objects(self, variation):
@@ -99,6 +103,7 @@ class SSWWProcessor(BaseProcessorABC):
         loc_idk = ak.local_index(self.events.JetGood.eta)
         mask_vbs = (loc_idk == largest_mjj_idx[:,0]) | (loc_idk == largest_mjj_idx[:,1])
         self.events["VBSJets"] = self.events.JetGood[mask_vbs]
+        self.events["nonVBSJets"] = self.events.JetGood[~mask_vbs]
         
         self.events["deltaeta_vbs"] = abs(self.events.VBSJets[:,0].eta - self.events.VBSJets[:,1].eta)
 
@@ -115,3 +120,16 @@ class SSWWProcessor(BaseProcessorABC):
         #mll
         self.events["mll"] = (self.events.LeptonGood[:,0] + self.events.LeptonGood[:,1]).mass
         
+
+        # Defining quadrimoment of W and VBSpartons
+        self.events["W1"] = self.events.LHEPart[:,2 ] + self.events.LHEPart[:,3]
+        self.events["W2"] = self.events.LHEPart[:,4 ] + self.events.LHEPart[:,5]
+
+        self.events["Neutrino1"] = self.events.LHEPart[:,3]
+        self.events["Neutrino2"] = self.events.LHEPart[:,5]
+        
+        charge1 = np.sign(self.events.LHEPart[:,2].pdgId)
+        charge2 = np.sign(self.events.LHEPart[:,4].pdgId)
+        self.events["W1"] = ak.with_field(self.events.W1, charge1, "charge")
+        self.events["W2"] = ak.with_field(self.events.W2, charge2, "charge")
+        self.events["VBSPartons"] = self.events.LHEPart[:,6:8]

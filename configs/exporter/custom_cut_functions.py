@@ -39,11 +39,11 @@ vbs_presel = Cut(
 vbs_presel_looser = Cut(
     name="vbs_presel",
     params={"mll": 10.,
-            "mjj_vbs": 250.,
-            "detajj_vbs": 1.5,
+            "mjj_vbs": 200.,
+            "detajj_vbs": 0.,
             "max_Zeppl_vbs": 1.5,
             "MET": 15.,
-            "deltaMZ": 10.
+            "deltaMZ": 0.
             },
     function=vbs_cuts
 )
