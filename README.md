@@ -5,8 +5,8 @@ Welcome to the experimental section of the Physics at Colliders 2024 PhD Course 
 - Indico agenda: https://indico.cern.ch/event/1466371/
 - Repository: https://github.com/valsdav/PhDCourse_MLForPrecisionPhysics_2024
 - Dataset and code:  https://cernbox.cern.ch/files/spaces/eos/user/d/dvalsecc/EFT_PhD_Course
-
---------------
+- Dataset WW VBS features [plots](https://dvalsecc.web.cern.ch/dvalsecc/EFT_PhD_Course_2024/plots/WW_sample_plots/vbs_sel_looser/)
+   
 ## Table of content
 
 - Dataset preparation
@@ -24,7 +24,6 @@ Welcome to the experimental section of the Physics at Colliders 2024 PhD Course 
    - Example: Conditional probability for event boost
    - Application: Generative Transformers for neutrinos generation
 
--------------
 ## Setup
 ### Setup at CERN
 ```bash
@@ -93,8 +92,6 @@ The dataset is also temporarely publicly available at https://dvalsecc.web.cern.
 ```bash
 curl https://dvalsecc.web.cern.ch/public/datasets/PhDCourse_MLColliderPhysics_2024/training_datasets.tar.gz
 ```
-
---------------------
 
 
 
