@@ -1,0 +1,13 @@
+numpy
+torch
+matplotlib
+awkward
+pyarrow
+comet-ml
+hist
+vector
+numba
+mplhep
+zuko
+jupyterlab
+mdmm @ git+https://github.com/the-moliver/mdmm@master
