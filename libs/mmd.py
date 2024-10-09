@@ -24,7 +24,7 @@ def MMD(x, y, kernel, device, dtype):
 
     if kernel == "multiscale":
 
-        bandwidth_range = [0.1, 0.2, 0.5, 0.9, 1.3]
+        bandwidth_range = [0.1, 0.2, 0.5, 0.9, 1.4, 2.]
         for a in bandwidth_range:
             XX += a**2 * (a**2 + dxx)**-1
             YY += a**2 * (a**2 + dyy)**-1
