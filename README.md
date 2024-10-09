@@ -6,8 +6,8 @@ Welcome to the experimental section of the Physics at Colliders 2024 PhD Course 
 - Repository: https://github.com/valsdav/PhDCourse_MLForPrecisionPhysics_2024
 - Dataset and code:  https://cernbox.cern.ch/files/spaces/eos/user/d/dvalsecc/EFT_PhD_Course
 
-
-## Setup at CERN
+## Setup
+### Setup at CERN
 ```bash
 # Open a connection to lxplus-gpu with a port-forwarding on 8888 to visualize jupyter notebook
 ssh -L 8888:localhost:8888 lxplus-gpu
@@ -22,7 +22,7 @@ tmux new -t course
 # Start the apptainer shalle
 apptainer shell -B ${XDG_RUNTIME_DIR} \
           --nv -B /afs -B /cvmfs/cms.cern.ch \
-          -B /eos/user/d/dvalsecc/EFT_PhD_Course \
+          -B /eos/user/d/dvalsecc/PhDCourse_MLColliderPhysics2024 \
           --bind /tmp  -B /eos/user/your/your-user \
           --bind /etc/sysconfig/ngbauth-submit  \
           --env KRB5CCNAME=${XDG_RUNTIME_DIR}/krb5cc \
@@ -43,7 +43,7 @@ python -m ipykernel install --user --name=myenv
 jupyter lab
 ```
 
-### Setup outside CERN
+#### Setup outside CERN
 We don't need special software apart from torch (with CUDA support possibly). 
 
 You can use docker or apptainer to have a basic python environment and them install the required packages on top.
@@ -67,6 +67,31 @@ python -m ipykernel install --user --name=myenv
 jupyter lab
 ```
 
+## Datasets
+The training dataset are made available on CERN EOS to the course students. They are accessible at `/eos/user/d/dvalsecchi/PhDCourse_MLColliderPhysics2024`. 
+The dataset is also temporarely publicly available at https://dvalsecc.web.cern.ch/public/datasets/PhDCourse_MLColliderPhysics_2024/training_datasets.tar.gz.
+
+```bash
+curl https://dvalsecc.web.cern.ch/public/datasets/PhDCourse_MLColliderPhysics_2024/training_datasets.tar.gz
+```
+
+--------------------
+## Table of content
+
+- Dataset preparation
+    - features scaling and normalization
+    - data manipulation and formatting
+
+- Transformers
+    - Intro and architecture
+    - Regression with transformers
+      - Best losses for full particle regression
+      - Constrained optimization with MDMM
+
+- Normalizing flows:
+   - Intro and architecture
+   - Conditional probability for event boost
+   - Generative Transformers for neutrinos generation
 
 
 
