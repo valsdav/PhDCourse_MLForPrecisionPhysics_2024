@@ -6,6 +6,25 @@ Welcome to the experimental section of the Physics at Colliders 2024 PhD Course 
 - Repository: https://github.com/valsdav/PhDCourse_MLForPrecisionPhysics_2024
 - Dataset and code:  https://cernbox.cern.ch/files/spaces/eos/user/d/dvalsecc/EFT_PhD_Course
 
+--------------
+## Table of content
+
+- Dataset preparation
+    - features scaling and normalization
+    - data manipulation and formatting
+
+- Transformers
+    - Intro and architecture
+    - Full particles regression with transformers
+      - Best losses for full particle regression
+      - Constrained optimization with MDMM
+
+- Normalizing Flows:
+   - Intro and architecture
+   - Example: Conditional probability for event boost
+   - Application: Generative Transformers for neutrinos generation
+
+-------------
 ## Setup
 ### Setup at CERN
 ```bash
@@ -68,7 +87,7 @@ jupyter lab
 ```
 
 ## Datasets
-The training dataset are made available on CERN EOS to the course students. They are accessible at `/eos/user/d/dvalsecchi/PhDCourse_MLColliderPhysics2024`. 
+The training dataset is available on CERN EOS to the course students. They are accessible at `/eos/user/d/dvalsecchi/PhDCourse_MLColliderPhysics2024`. 
 The dataset is also temporarely publicly available at https://dvalsecc.web.cern.ch/public/datasets/PhDCourse_MLColliderPhysics_2024/training_datasets.tar.gz.
 
 ```bash
@@ -76,23 +95,6 @@ curl https://dvalsecc.web.cern.ch/public/datasets/PhDCourse_MLColliderPhysics_20
 ```
 
 --------------------
-## Table of content
-
-- Dataset preparation
-    - features scaling and normalization
-    - data manipulation and formatting
-
-- Transformers
-    - Intro and architecture
-    - Regression with transformers
-      - Best losses for full particle regression
-      - Constrained optimization with MDMM
-
-- Normalizing flows:
-   - Intro and architecture
-   - Conditional probability for event boost
-   - Generative Transformers for neutrinos generation
-
 
 
 
