@@ -35,6 +35,7 @@ ssh -L 8888:localhost:8888 lxplus-gpu.cern.ch
 git clone git@github.com:valsdav/PhDCourse_MLForPrecisionPhysics_2024.git
 
 # Let's use tmux to keep the session open, note down your lxplus-gpu hostname
+systemctl --user start tmux.service
 tmux new -t course
 
 # Start the apptainer shell
