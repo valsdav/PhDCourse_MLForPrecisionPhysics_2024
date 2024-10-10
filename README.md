@@ -31,13 +31,13 @@ Welcome to the experimental section of the Physics at Colliders 2024 PhD Course 
 ssh -L 8888:localhost:8888 lxplus-gpu.cern.ch
 # optionally move to eos to have more disk space
 # cd /eos/user/your/name
-mkdir PhDCourse2024
-cd PhDCourse2024
+
+git clone git@github.com:valsdav/PhDCourse_MLForPrecisionPhysics_2024.git
 
 # Let's use tmux to keep the session open, note down your lxplus-gpu hostname
 tmux new -t course
 
-# Start the apptainer shalle
+# Start the apptainer shell
 apptainer shell -B ${XDG_RUNTIME_DIR} \
           --nv -B /afs -B /cvmfs/cms.cern.ch \
           -B /eos/user/d/dvalsecc/PhDCourse_MLColliderPhysics2024 \
