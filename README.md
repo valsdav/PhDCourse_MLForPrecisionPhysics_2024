@@ -28,7 +28,7 @@ Welcome to the experimental section of the Physics at Colliders 2024 PhD Course 
 ### Setup at CERN
 ```bash
 # Open a connection to lxplus-gpu with a port-forwarding on 8888 to visualize jupyter notebook
-ssh -L 8888:localhost:8888 lxplus-gpu
+ssh -L 8888:localhost:8888 lxplus-gpu.cern.ch
 # optionally move to eos to have more disk space
 # cd /eos/user/your/name
 mkdir PhDCourse2024
