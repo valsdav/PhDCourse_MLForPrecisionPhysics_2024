@@ -4,7 +4,7 @@ Welcome to the experimental section of the Physics at Colliders 2024 PhD Course 
 
 - Indico agenda: https://indico.cern.ch/event/1466371/
 - Repository: https://github.com/valsdav/PhDCourse_MLForPrecisionPhysics_2024
-- Dataset and code:  https://cernbox.cern.ch/files/spaces/eos/user/d/dvalsecc/EFT_PhD_Course
+- Dataset and code:  https://cernbox.cern.ch/files/spaces/eos/user/d/dvalsecc/PhDCourse_MLColliderPhysics2024
 - Dataset WW VBS features [plots](https://dvalsecc.web.cern.ch/dvalsecc/EFT_PhD_Course_2024/plots/WW_sample_plots/vbs_sel_looser/)
    
 ## Table of content
@@ -42,7 +42,6 @@ tmux new -t course
 apptainer shell -B ${XDG_RUNTIME_DIR} \
           --nv -B /afs -B /cvmfs/cms.cern.ch \
           -B /eos/user/d/dvalsecc/PhDCourse_MLColliderPhysics2024 \
-          --bind /tmp  -B /eos/user/your/your-user \
           --bind /etc/sysconfig/ngbauth-submit  \
           --env KRB5CCNAME=${XDG_RUNTIME_DIR}/krb5cc \
           /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmsml/cmsml:3.11-cuda
